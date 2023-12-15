@@ -3,7 +3,9 @@
       "src/*"
   ],
   "compilerOptions": {
-      "target": "es5",
+      "target": "esnext",
+      "module": "esnext",
+      "moduleResolution": "node",
       "jsx": "react",
       "allowSyntheticDefaultImports": true
   }
