@@ -1,6 +1,7 @@
 import {useState} from 'react'
 import warhammerLogo from '/warhammer.png'
 import './App.css'
+import {Button} from "flowbite-react";
 
 function App() {
   const [count, setCount] = useState(0)
@@ -14,9 +15,9 @@ function App() {
       </div>
       <h1 className="m-10">Warhammer things</h1>
       <div className="card m-10">
-        <button className="bg-gray-500 hover:bg-gray-950 text-white font-bold py-2 px-4 rounded" onClick={() => setCount((count) => count + 1)}>
+        <Button onClick={() => setCount((count) => count + 1)}>
           count is {count}
-        </button>
+        </Button>
       </div>
     </div>
   )
