@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class AlliancesController {
     @GetMapping("/getalliances")
     @CrossOrigin(origins = "http://localhost:3000")
-    public ArrayList<Object> Alliance() throws JsonProcessingException {
+    public ArrayList<Object> Unit() throws JsonProcessingException {
         return new GetAlliances().getname();
     }
 }
