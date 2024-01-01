@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 //@ComponentScan(basePackageClasses = UnitData.class)
 @RestController
 public class Controller {
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "http://localhost:5173")
     //    @Bean
     @GetMapping("/getunit/{name1}/{name2}")
     public int Unit(@PathVariable String name1, @PathVariable String name2) throws JsonProcessingException {

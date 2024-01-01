@@ -5,8 +5,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
-import org.json.JSONObject;
-import org.json.JSONArray;
 
 import java.util.*;
 
@@ -14,7 +12,7 @@ public class Army {
     ArrayList<Object> armyarray;
     HashMap<String, Object> map;
 
-    public army(String name) throws JsonProcessingException {
+    public Army(String name) throws JsonProcessingException {
         armyarray = new ArrayList<>();
         String uri = "https://aos-api.com/allegiances?grand_alliance=" + name;
         RestTemplate restTemplate = new RestTemplate();
