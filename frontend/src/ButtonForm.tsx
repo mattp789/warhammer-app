@@ -15,7 +15,7 @@ const MyComponent = ({team}: ButtonFormProps) => {
     // Step 1: Initial GET request
     const fetchDataStep1 = async () => {
       try {
-        const response = await fetch('http://localhost:8080/getalliances');
+        const response = await fetch('http://localhost:8080/alliance');
         const data = await response.json();
         setStep1Data(data);
       } catch (error) {
