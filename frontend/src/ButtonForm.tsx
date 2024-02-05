@@ -6,9 +6,9 @@ const MyComponent = ({team}: ButtonFormProps) => {
   const [attacker, setattackerid] = useAtom(attackerid);
   const [defender, setdefenderid] = useAtom(defenderid);
   const [step1Data, setStep1Data] = useState([]);
-  const [step2Data, setStep2Data] = useState({});
+  const [step2Data, setStep2Data] = useState([]);
   const [step3Data, setStep3Data] = useState({});
-  const [expandedButtons1, setExpandedButtons1] = useState({});
+  const [expandedButtons1, setExpandedButtons1] = useState([]);
   const [expandedButtons2, setExpandedButtons2] = useState({});
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const MyComponent = ({team}: ButtonFormProps) => {
     // Step 2: Subsequent GET request based on step 1 data
     if (!expandedButtons1[item]) {
       try {
-        const response = await fetch(`http://localhost:8080/getarmy/${item}`.toLowerCase());
+        const response = await fetch(`http://localhost:8080/army/${item}`);
         const data = await response.json();
         setStep2Data({ ...step2Data, [item]: data });
       } catch (error) {
@@ -42,11 +42,11 @@ const MyComponent = ({team}: ButtonFormProps) => {
     setExpandedButtons1({ ...expandedButtons1, [item]: !expandedButtons1[item] });
   };
 
-  const handleStep2ButtonClick = async (item, id) => {
+  const handleStep2ButtonClick = async (item) => {
     // Step 3: Subsequent GET request based on step 2 data
     if (!expandedButtons2[item]) {
       try {
-        const response = await fetch(`http://localhost:8080/getunits/${id}`.toLowerCase());
+        const response = await fetch(`http://localhost:8080/getunits/${item}`);
         const data = await response.json();
         setStep3Data({ ...step3Data, [item]: data });
       } catch (error) {
@@ -81,25 +81,25 @@ const MyComponent = ({team}: ButtonFormProps) => {
           {/* Step 2: Display buttons for the data from Step 2 */}
           {step2Data[item] && expandedButtons1[item] && (
             <>
-              {step2Data[item].map(({ id, name }) => (
+              {step2Data[item].map(( item) => (
                 <>
                   <button style = {{
                     marginLeft:"2rem"
-                  }} onClick={() => handleStep2ButtonClick(name, id)}>
-                    {name}
+                  }} onClick={() => handleStep2ButtonClick(item)}>
+                    {item}
                   </button>
 
                   {/* Step 3: Display buttons for the data from Step 3 */}
                   {step3Data[name] && expandedButtons2[name] && (
                     <>
-                      {step3Data[name].map(({ id: thirdId, name: thirdName }) => (
+                      {step3Data[name].map((thirdName ) => (
                         <>
                           {/* Display buttons for the third level */}
                           <button style = {{
-                            color:(attacker === thirdId && team === "attack") || (defender === thirdId && team === "defend")?"gold":"inherit", 
+                            color:(attacker === thirdName && team === "attack") || (defender === thirdName && team === "defend")?"gold":"inherit",
                             fontWeight:"bold",
                             marginLeft:"4rem"
-                          }} onClick={() => handleStep3ButtonClick(thirdId)}>{thirdName}</button>
+                          }} onClick={() => handleStep3ButtonClick(thirdName)}>{thirdName}</button>
                         </>
                       ))}
                     </>
